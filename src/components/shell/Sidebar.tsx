@@ -27,9 +27,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const navGroups = [
     {
+      label: 'PUBLIC & PRODUCT',
+      items: [
+        { path: '/', label: 'Landing Page', icon: Layers },
+      ],
+    },
+    {
       label: 'OVERVIEW',
       items: [
-        { path: '/', label: 'Overview', icon: LayoutDashboard },
+        { path: '/overview', label: 'Overview', icon: LayoutDashboard },
       ],
     },
     {
@@ -69,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <aside className={`app-sidebar ${isOpenMobile ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
-          <div className="sidebar-brand">
+          <div className="sidebar-brand" onClick={() => onNavigate('/')} style={{ cursor: 'pointer' }}>
             <div className="brand-icon">
               <Layers size={18} />
             </div>

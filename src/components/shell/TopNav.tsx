@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bell, Menu, User, ChevronDown, CheckCircle, Shield, RotateCcw, LogOut } from 'lucide-react';
+import { Bell, Menu, User, ChevronDown, CheckCircle, Shield, RotateCcw, LogOut, Sun, Moon } from 'lucide-react';
 import { useData } from '../../context/DataContext';
+import { useTheme } from '../../context/ThemeContext';
 
 interface TopNavProps {
   title: string;
@@ -14,6 +15,7 @@ export const TopNav: React.FC<TopNavProps> = ({
   onToggleMobileMenu,
 }) => {
   const { resetDemoData } = useData();
+  const { theme, toggleTheme } = useTheme();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifs, setShowNotifs] = useState(false);
   const [resetFeedback, setResetFeedback] = useState(false);
@@ -74,6 +76,17 @@ export const TopNav: React.FC<TopNavProps> = ({
       </div>
 
       <div className="top-nav-right">
+        {/* Theme Switcher Button */}
+        <button
+          type="button"
+          className="btn-icon"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+        </button>
+
         {/* Notifications Dropdown */}
         <div style={{ position: 'relative' }} ref={notifsRef}>
           <button 
